@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Retirement Date</title>
+  <link href="jquery-ui.css" rel="stylesheet">
+</head>
+<body>
+ 
+<p>DOB: <input type="text" id="dob"></p>
+<p>DORetirement: <input type="text" id="doret"></p> 
+
+<script src="jquery.js"></script>
+<script src="jquery-ui.js"></script>
+
+<script type="text/javascript">
+$( function() {
+	$('#dob').datepicker({
+		dateFormat: 'yy/mm/dd',
+    onSelect: function(value) {
+			var retirementDate = new Date(value);
+			var dob = retirementDate.getDate() +'/' + (retirementDate.getMonth() + 1) +'/' + retirementDate.getFullYear() ;
+      $('#dob').val(dob);
+
+      var lastDay = new Date(retirementDate.getFullYear()+58, retirementDate.getMonth() + 1, 0);
+      var lastDayWithSlashes = lastDay.getDate() + '/' + (lastDay.getMonth() + 1) + '/' + lastDay.getFullYear(); 
+      $('#doret').val(lastDayWithSlashes);
+    },
+    yearRange: "-100:+150",
+    changeMonth: true,
+    changeYear: true
+	});
+});
+</script>
+</body>
+</html>
